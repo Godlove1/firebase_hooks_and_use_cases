@@ -51,7 +51,7 @@ export async function uploadFilesToAppWrite(files) {
     const client = new Client();
     client
       .setEndpoint("https://cloud.appwrite.io/v1")
-      .setProject("6734a90d000c4c9f738e");
+      .setProject(#APPWRITE_ID_FROM_ENV); // REPLACE WITH ACTUAL ID
 
     const storage = new Storage(client);
     const fileUrls = [];
@@ -61,14 +61,14 @@ export async function uploadFilesToAppWrite(files) {
       toast.loading(`Uploading images hold on ...`,{duration:3000});
 
       const uploadedFile = await storage.createFile(
-        "6734acef00239ccc2d3b", // AppWrite storage bucket ID
+        #APPWRITE_ID_FROM_ENV, // AppWrite storage bucket ID
         uniqueFileName,
         file
       );
 
       // Construct the file URL using the uploadedFile ID
       const fileUrl = storage.getFileView(
-        "6734acef00239ccc2d3b",
+        #APPWRITE_ID_FROM_ENV,
         `${uploadedFile.$id}`
       );
 
